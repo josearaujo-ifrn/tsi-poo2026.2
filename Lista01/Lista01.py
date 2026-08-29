@@ -93,7 +93,7 @@ graus_fahrenheit = float(input("Digite a quantidade de graus fahrenheit: "))
 
 celsius = (graus_fahrenheit - 32) / 9 * 5
 
-print(f"\n{graus_fahrenheit}°F em Celsius é {celsius}")
+print(f"\n{graus_fahrenheit}°F em Celsius é {celsius}°C")
 print("\nFim da Questão 07")
 print("-------------------------")
 
@@ -111,3 +111,79 @@ print("\nFim da Questão 08")
 print("-------------------------")
 
 print("\n---Estruturas Condicionais---")
+
+print("Inicio da Questão 09: \n")
+
+numero_09 = int(input("Digite um número de 1 a 10: "))
+
+if numero_09 >= 1 and numero_09 <= 10:
+    print("O número digitado está DENTRO da faixa solicitada.")
+else:
+    print("O número digitado está FORA da faixa solicitada.")
+
+print("\nFim da Questão 09")
+print("-------------------------")
+
+print("Inicio da Questão 10: \n")
+
+numero_10_01 = int(input("Digite o primeiro número: "))
+numero_10_02 = int(input("Digite o segundo número: "))
+
+if numero_10_01 > numero_10_02:
+    print(f"O primeiro número ({numero_10_01}) é maior que o segundo número ({numero_10_02})")
+elif numero_10_02 > numero_10_01:
+    print(f"O segundo número ({numero_10_02}) é maior que o primeiro número ({numero_10_01})")
+else:
+    print(f"O primeiro número ({numero_10_01}) é igual ao segundo número ({numero_10_02})")
+
+print("\nFim da Questão 10")
+print("-------------------------")
+
+print("Inicio da Questão 11: \n")
+
+numero_11_01 = int(input("Digite o primeiro número: "))
+numero_11_02 = int(input("Digite o segundo número: "))
+
+if numero_11_01 > numero_11_02:
+    print(f"O maior número é {numero_11_01} e o menor número é {numero_11_02}")
+    print(f"A diferença entre {numero_11_01} e {numero_11_02} é: ",numero_11_01 - numero_11_02)
+else:
+    print(f"O maior número é {numero_11_02} e o menor número é {numero_11_01}")
+    print(f"A diferença entre {numero_11_02} e {numero_11_01} é: ",numero_11_02 - numero_11_01)
+
+print("\nFim da Questão 11")
+print("-------------------------")
+
+print("Inicio da Questão 12: \n")
+
+numero_12_01 = int(input("Digite o primeiro número: "))
+numero_12_02 = int(input("Digite o segundo número: "))
+numero_12_03 = int(input("Digite o terceiro número: "))
+
+numeros = (numero_12_01, numero_12_02, numero_12_03)
+ordem_crescente = sorted(numeros)
+print(f"A ordem crescente é: {ordem_crescente}")
+
+print("\nFim da Questão 12")
+print("-------------------------")
+
+print("Inicio da Questão 13: \n")
+
+numero_13_01 = int(input("Digite o primeiro número: "))
+numero_13_02 = int(input("Digite o segundo número: "))
+numero_13_03 = int(input("Digite o terceiro número: "))
+ordem = input("Qual ordem? (crescente / decrescente): ").lower()
+
+numeros = (numero_13_01, numero_13_02, numero_13_03)
+ordem_crescente = sorted(numeros)
+ordem_decrescente = sorted(numeros, reverse= True)
+
+if ordem == "crescente":
+    print(f"A ordem crescente é: {ordem_crescente}")
+else:
+    print(f"A ordem decrescente é: {ordem_decrescente}")
+
+print("\nFim da Questão 13")
+print("-------------------------")
+
+print("\n---Estruturas de Repetição---")
