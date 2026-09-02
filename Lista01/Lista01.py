@@ -187,3 +187,208 @@ print("\nFim da Questão 13")
 print("-------------------------")
 
 print("\n---Estruturas de Repetição---")
+
+print("\nInicio da Questão 14: \n")
+
+for numeros in range(101):
+    print(numeros)
+
+print("\nFim da Questão 14")
+print("-------------------------")
+
+print("\nInicio da Questão 15: \n")
+
+for numeros in range(100, 0, -1):
+    print(numeros)
+
+print("\nFim da Questão 15")
+print("-------------------------")
+
+print("\nInicio da Questão 16: \n")
+
+inicio = int(input("Digite o valor inicial: "))
+final = int(input("Digite o valor final: "))
+somatorio = 0
+
+print(f"Os números do intervalo entre {inicio} e {final}:")
+for numeros in range(inicio,final + 1):
+    somatorio += numeros
+    print(numeros)
+
+print(f"O somatório dos números do intervalo é: {somatorio}")
+print("\nFim da Questão 16")
+print("-------------------------")
+
+print("\nInicio da Questão 17: \n")
+somatorio = 0
+
+for numeros in range(10):
+    numero = int(input("Digite o número: "))
+    somatorio += numero
+
+print(f"O somatório dos 10 números digitados: {somatorio}")
+
+print("\nFim da Questão 17")
+print("-------------------------")
+
+print("\nInicio da Questão 18: \n")
+somatorio = 0
+
+for numeros in range(5):
+    numero = int(input("Digite o número: "))
+    if numero < 10:
+        somatorio += numero
+
+print(f"O somatório dos números menores que 10: {somatorio}")
+
+print("\nFim da Questão 18")
+print("-------------------------")
+
+print("\nInicio da Questão 19: \n")
+somatorio = 0
+
+for numeros in range(5):
+    numero = int(input("Digite o número: "))
+    if numero >= 10 and numero < 20:
+        somatorio += numero
+
+print(f"O somatório dos números maiores ou iguais a 10 e menores que 20: {somatorio}")
+
+print("\nFim da Questão 19")
+print("-------------------------")
+
+print("nInicio da Questão 20: \n")
+somatorio = 0
+
+for numeros in range(5):
+    numero = int(input("Digite o número: "))
+    if numero % 2 == 0:
+        somatorio += numero
+
+print(f"O somatório dos números pares: {somatorio}")
+
+print("\nFim da Questão 20")
+print("-------------------------")
+
+print("\nInicio da Questão 21: \n")
+
+qtd = int(input("Digite a quantidade de valores: "))
+par = 0
+
+for i in range(qtd):
+    numero = int(input("Digite o número: "))
+    if numero % 2 == 0:
+        par += 1
+
+print(f"A quantidade de números pares é: {par}")
+print("\nFim da Questão 21")
+print("-------------------------")
+
+print("\nInicio da Questão 22: \n")
+
+posicoes_pares = 0
+posicoes_impares = 0
+
+for i in range(10):
+    numero = int(input("Digite o número: "))
+    if i % 2 == 0:
+        posicoes_impares += numero # quando coloquei par, estava somando ao contrario, tive que inverter a ordem
+    else:
+        posicoes_pares += numero
+
+print(f"Soma das posições pares: {posicoes_pares}")
+print(f"Soma das posições ímpares: {posicoes_impares}")
+
+if posicoes_pares > posicoes_impares:
+    print("A soma das posições pares é maior que das posições impares")
+elif posicoes_impares > posicoes_pares:
+    print("A soma das posições impares é maior que das posições pares")
+else: 
+    print("Ambos são iguais")
+
+print("\nFim da Questão 22")
+print("-------------------------")
+
+print("\nInicio da Questão 23: \n")
+
+numeros_pares = 0
+numeros_impares = 0
+
+for i in range(10):
+    numero = int(input("Digite o número: "))
+    if numero % 2 == 0:
+        numeros_pares += numero 
+    else:
+        numeros_impares += numero
+
+print(f"Soma dos números pares: {numeros_pares}")
+print(f"Soma dos números ímpares: {numeros_impares}")
+
+if numeros_pares > numeros_impares:
+    print("A soma dos números pares é maior que dos números impares")
+elif numeros_impares > numeros_pares:
+    print("A soma dss números impares é maior que dos números pares")
+else: 
+    print("Ambos são iguais")
+
+print("\nFim da Questão 23")
+print("-------------------------")
+
+print("\nInicio da Questão 24: \n")
+
+total = int(input("Digite o total de números que vão ser somados: "))
+soma = 0
+
+for i in range(total):
+    numero = int(input("Digite o número: "))
+    soma += numero
+
+print(f"o total dos números é {soma}")
+
+print("\nFim da Questão 24")
+print("-------------------------")
+
+print("\nInicio da Questão 25: \n")
+
+print(f"Os números divisiveis por 7 e não multiplos de 5 entre 1000 e 3000 são:")
+for i in range(1000, 3000):
+    if i % 7 == 0 and i % 5 != 0:
+        print(i)
+
+print("\nFim da Questão 25")
+print("-------------------------")
+
+print("\nInicio da Questão 26: \n")
+
+quantidade_pares = 0
+quantidade_impares = 0
+while (True):
+    numeros = int(input("Digite o número: "))
+    if numeros < 0:
+        break
+    elif numeros % 2 == 0:
+       quantidade_pares += 1
+    elif numeros % 2 != 0:
+        quantidade_impares += 1
+print(f"A quantidade de pares é: {quantidade_pares}")
+print(f"A quantidade de ímpares é: {quantidade_impares}")
+
+print("\nFim da Questão 26")
+print("-------------------------")
+
+print("\nInicio da Questão 27: \n")
+
+total_numeros = int(input("Digite um número: "))
+
+for i in range(1, total_numeros + 1):
+    if i % 3 == 0:
+        print("PI")
+    elif i % 7 == 0:
+        print("PA")
+    elif i % 3 and i % 7 == 0:
+        print("POW")
+    else:
+        print(i)
+
+print("\nFim da Questão 27")
+print("-------------------------")
