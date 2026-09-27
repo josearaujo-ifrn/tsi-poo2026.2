@@ -65,7 +65,7 @@ try:
 except ValueError as erro:
     print(erro)
 
-Questão 3.1
+# Questão 3.1
 class LivroEmprestadoError(Exception):
     pass
 
