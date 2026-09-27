@@ -107,3 +107,43 @@ alugar()
 devolver()
 __str__
 As regras são idênticas às da biblioteca, apenas mudando o contexto.
+
+## Aula 05 - Boas Práticas:
+--- Exercício 5.1 — Corrija o código ---
+O código abaixo possui 5 erros conceituais. Reescreva-o corretamente.
+
+class Produto:
+    def __init__(nome, preco):
+        nome = nome
+        preco = preco
+
+    def vender(self, quantidade):
+        if quantidade < 0:
+            return False
+
+    def __str__(self):
+        return nome
+
+--- Exercício 5.2 — Modelagem completa ---
+Uma academia deseja controlar alunos.
+
+Crie:
+AlunoInativoError (exceção personalizada)
+Classe Aluno
+
+Atributos:
+nome
+matrícula
+ativo (booleano)
+
+Métodos:
+desativar()
+reativar()
+treinar() (lança exceção se estiver inativo)
+__str__
+
+Programa principal:
+Crie 2 alunos.
+Desative um deles.
+Tente treiná-lo utilizando try/except.
+Imprima o relatório final.
