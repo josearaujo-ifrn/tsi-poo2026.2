@@ -63,3 +63,47 @@ No programa principal:
 faça um depósito;
 realize um saque válido;
 tente sacar um valor maior que o saldo e trate a exceção específica.
+
+## Aula 04 - Exceções Personalizadas com Integrações:
+--- Exercício 4.1 — Biblioteca completa ---
+
+Crie:
+Exceção
+- LivroEmprestadoError
+
+Classe Livro
+
+Atributos:
+título
+autor
+emprestado
+
+Métodos:
+emprestar()
+devolver()
+__str__
+
+Regras:
+Emprestar um livro já emprestado → exceção.
+Devolver um livro disponível → exceção.
+
+Programa principal:
+Crie 2 livros.
+Empreste um.
+Tente emprestar novamente.
+Devolva o livro.
+Imprima o relatório final.
+
+--- Exercício 4.2 — Locadora de Jogos ---
+Crie uma exceção personalizada chamada JogoIndisponivelError.
+
+Depois crie uma classe Jogo com:
+nome
+plataforma
+alugado
+
+Métodos:
+alugar()
+devolver()
+__str__
+As regras são idênticas às da biblioteca, apenas mudando o contexto.
