@@ -1,75 +1,75 @@
-# # Questão 6 - Funcionário
+# Questão 6 - Funcionário
 
-# class SalarioInvalidoError(Exception):
-#     pass
-# class Funcionario:
-#     def __init__(self, nome: str, salario: int):
-#         self.salario_minimo = 1600
-#         self.nome = nome
-#         self.salario = salario
+class SalarioInvalidoError(Exception):
+    pass
+class Funcionario:
+    def __init__(self, nome: str, salario: int):
+        self.salario_minimo = 1600
+        self.nome = nome
+        self.salario = salario
 
-#     @property
-#     def salario(self):
-#         return self._salario
+    @property
+    def salario(self):
+        return self._salario
     
-#     @salario.setter
-#     def salario(self, salario):
-#         if salario >= self.salario_minimo:
-#             self._salario = salario
-#         else:
-#             raise SalarioInvalidoError\
-#             (f"O salário digitado de {self.nome} é menor que o salário mínimo (R$1600).")
+    @salario.setter
+    def salario(self, salario):
+        if salario >= self.salario_minimo:
+            self._salario = salario
+        else:
+            raise SalarioInvalidoError\
+            (f"O salário digitado de {self.nome} é menor que o salário mínimo (R$1600).")
     
-#     def aumentar(self, percentual: int):
-#         if percentual > 0 and percentual <= 30:
-#             self.salario += self.salario * (percentual/100)
-#         else:
-#             raise ValueError("O percentual do aumento deve ser entre 0 e 30.")
+    def aumentar(self, percentual: int):
+        if percentual > 0 and percentual <= 30:
+            self.salario += self.salario * (percentual/100)
+        else:
+            raise ValueError("O percentual do aumento deve ser entre 0 e 30.")
 
-#     def __str__(self):
-#         return f"Funcionário: {self.nome} - Salário: R${self.salario}"
+    def __str__(self):
+        return f"Funcionário: {self.nome} - Salário: R${self.salario}"
 
-# # Testes/Validações e Questão 8:
-# try:
-#     fun01 = Funcionario("João", 1600)
-#     fun01.aumentar(10)
-#     print(fun01)
-#     fun02 = Funcionario("Maria", 1500)
-# except SalarioInvalidoError as erro_salario:
-#     print(erro_salario)
-# except ValueError as erro:
-#     print(erro)
+# Testes/Validações e Questão 8:
+try:
+    fun01 = Funcionario("João", 1600)
+    fun01.aumentar(10)
+    print(fun01)
+    fun02 = Funcionario("Maria", 1500)
+except SalarioInvalidoError as erro_salario:
+    print(erro_salario)
+except ValueError as erro:
+    print(erro)
 
-# # Questão 7 - Email
+# Questão 7 - Email
 
-# class EmailInvalidoError(Exception):
-#     pass
+class EmailInvalidoError(Exception):
+    pass
 
-# class Email:
-#     def __init__(self, endereco: str):
-#         self.endereco = endereco
+class Email:
+    def __init__(self, endereco: str):
+        self.endereco = endereco
 
-#     @property
-#     def endereco(self):
-#         return self._endereco
+    @property
+    def endereco(self):
+        return self._endereco
 
-#     @endereco.setter
-#     def endereco(self, endereco: str):
-#         if "@" not in endereco or "." not in endereco:
-#             raise EmailInvalidoError(f"O email digitado: '{endereco}' deve conter '@' e '.'")
-#         else:
-#             self._endereco = endereco
+    @endereco.setter
+    def endereco(self, endereco: str):
+        if "@" not in endereco or "." not in endereco:
+            raise EmailInvalidoError(f"O email digitado: '{endereco}' deve conter '@' e '.'")
+        else:
+            self._endereco = endereco
 
-#     def __str__(self):
-#         return f"O email {self.endereco} é válido."
+    def __str__(self):
+        return f"O email {self.endereco} é válido."
 
-# # Testes/Validações e Questão 8:
-# try:
-#     email1 = Email("joao@email.com")
-#     print(email1)
-#     email2 = Email("joao@com")
-# except EmailInvalidoError as erro_email:
-#     print(erro_email)
+# Testes/Validações e Questão 8:
+try:
+    email1 = Email("joao@email.com")
+    print(email1)
+    email2 = Email("joao@com")
+except EmailInvalidoError as erro_email:
+    print(erro_email)
 
 # Questão 9 - Conta Bancaria
 
@@ -115,7 +115,7 @@ class ContaBancaria:
     
     def __str__(self):
         return f"Saldo da conta: R${self._saldo}"
-
+# Testes/Validações da Questão 9
 try:
     conta1 = ContaBancaria()
     conta1.depositar(1002)
@@ -128,30 +128,34 @@ except SaldoInsuficienteError as erro_saldo:
     print(erro_saldo)
 
 # Questão 10 - Caixa Eletronico
+conta01 = ContaBancaria()
 
 while True:
-    print("1 - Cadastrar usuário.")
-    print("2 - Depositar dinheiro.")
-    print("3 - Sacar dinheiro.")
-    print("4 - Exibir saldo da conta.")
-    print("5 - Sair")
-
-    numero_operacao = int(input("Digite a opção desejada: "))
-    if numero_operacao == 1:
-        nome_da_conta = input("Digite o nome da conta: ")
-        nome_da_conta = ContaBancaria()
-        continue
-    elif numero_operacao == 2:
-        total_deposito = int(input("Digite a quantidade que deseja depositar: "))
-        nome_da_conta.depositar(total_deposito)
-        continue
-    elif numero_operacao == 3:
-        total_saque = int(input("Digite a quantidade que deseja sacar: "))
-        nome_da_conta.sacar(total_saque)
-        continue
-    elif numero_operacao == 4:
-        print(nome_da_conta)
-        continue
-    elif numero_operacao == 5:
-        print("Saindo...")
-        break
+    print("1 - Depositar dinheiro.")
+    print("2 - Sacar dinheiro.")
+    print("3 - Exibir saldo da conta.")
+    print("4 - Sair")
+    try:
+        numero_operacao = int(input("Digite a opção desejada: "))
+        if numero_operacao == 1:
+            total_deposito = int(input("Digite a quantidade que deseja depositar: "))
+            conta01.depositar(total_deposito)
+            continue
+        elif numero_operacao == 2:
+            total_saque = int(input("Digite a quantidade que deseja sacar: "))
+            conta01.sacar(total_saque)
+            continue
+        elif numero_operacao == 3:
+            print(conta01)
+            continue
+        elif numero_operacao == 4:
+            print("Saindo...")
+            break
+    except ValueError as erro:
+        print("Digite apenas números.")
+    except ValorInvalidoError as erro_valor:
+        print(erro_valor)
+    except SaldoInsuficienteError as erro_saldo:
+        print(erro_saldo)
+    except LimiteExcedidoError as erro_limite:
+        print(erro_limite)
