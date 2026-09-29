@@ -34,7 +34,8 @@ try:
     fun01 = Funcionario("João", 1600)
     fun01.aumentar(10)
     print(fun01)
-    fun02 = Funcionario("Maria", 1500)
+    fun02 = Funcionario("Maria", 1600)
+    fun01.aumentar(31)
 except SalarioInvalidoError as erro_salario:
     print(erro_salario)
 except ValueError as erro:
