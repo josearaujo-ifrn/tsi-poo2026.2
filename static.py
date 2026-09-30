@@ -8,3 +8,6 @@
         hoje = date.today()
         dif = hoje - data
         return dif
+if self.validade <= date.today():
+            print("medicamento ta vencido")
+            raise MedicamentoVencidoError("o medicamento está vencido")
