@@ -1,9 +1,9 @@
 from datetime import date
 
 class QuantidadeInvalidaError(Exception):
-    pass
+    pass # criei uma classe com exception e pass para servir de "base" (pendente)
 class MedicamentoVencidoError(Exception):
-    pass
+    pass # criei uma classe com exception e pass para servir de "base" (pendente)
 
 class Medicamento:
     def __init__(self, nome: str, lote: str, validade: date, quantidade: int, valor: float):
@@ -12,6 +12,17 @@ class Medicamento:
         self.validade = validade
         self.quantidade = quantidade
         self.valor = valor
+
+    @classmethod
+    def de_registro(cls, texto: str) -> "Medicamento":
+        no, lo, vali, qua, valo = texto.split(";")
+        data = date.fromisoformat(vali)
+        return cls( no, lo, data, int(qua), int(valo) )
+    @staticmethod
+    def dias_para_vencer(data: date):
+        hoje = date.today()
+        dif = hoje - data
+        return dif
 
     @property
     def valor(self):
@@ -59,10 +70,18 @@ class Medicamento:
         else:
             return False
 
+    def __lt__(self, outro: "Medicamento"):
+        return self.validade < outro.validade
+
+    def __repr__(self):
+        return f"Medicamento(nome={self.nome}), Preço(preco={self.valor})"
 try:
-    m1 = Medicamento("a", "b1", date(2026, 10, 11), 5, 10.50)
-    m2 = Medicamento("a", "b1", date(2026, 10, 11), 5, 10.50)
-    print(m1 == m2)
+    m1 = Medicamento("a", "b1", date(2026, 10, 11), 5, 10.00)
+    m2 = Medicamento("b", "b1", date(2026, 11, 11), 5, 12.50)
+    m3 = Medicamento("c","b1", date(2026, 12, 11), 5, 15.00)
+    medicamentos = [m1, m2, m3]
+    for medicamento in sorted(medicamentos):
+        print(medicamento)
 except MedicamentoVencidoError as erro:
     print(erro)
 except QuantidadeInvalidaError as erro:
