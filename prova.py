@@ -2,6 +2,7 @@ from datetime import date
 
 class QuantidadeInvalidaError(Exception):
     pass # criei uma classe com exception e pass para servir de "base" (pendente)
+    pass # criei uma classe com exception e pass para servir de "base" (pendente)
 class MedicamentoVencidoError(Exception):
     pass # criei uma classe com exception e pass para servir de "base" (pendente)
 
@@ -17,7 +18,7 @@ class Medicamento:
     def de_registro(cls, texto: str) -> "Medicamento":
         no, lo, vali, qua, valo = texto.split(";")
         data = date.fromisoformat(vali)
-        return cls( no, lo, data, int(qua), float(valo) )
+        return cls( no, lo, data, int(qua), int(valo) )
     @staticmethod
     def dias_para_vencer(data: date):
         hoje = date.today()
@@ -72,52 +73,13 @@ class Medicamento:
         else:
             return False
 
-    def __lt__(self, outro: "Medicamento") -> bool:
-        return self.validade < outro.validade
-
-    def __repr__(self) -> str:
-        return f"Medicamento(nome={self.nome}), Preço(preco={self.valor})"
-# try:
-#     m1 = Medicamento("a", "b1", date(2026, 10, 11), 5, 10.00)
-#     m2 = Medicamento("b", "b1", date(2026, 11, 11), 5, 12.50)
-#     m3 = Medicamento("c","b1", date(2026, 12, 11), 5, 15.00)
-#     medicamentos = [m1, m2, m3]
-#     for medicamento in sorted(medicamentos):
-#         print(medicamento)
-# except MedicamentoVencidoError as erro:
-#     print(erro)
-# except QuantidadeInvalidaError as erro:
-#     print(erro)
-# except ValueError as erro:
-#     print(erro)
-
-if __name__ == "__main__":
-    m1 = Medicamento("Dipirona 500mg", "L2026A", date(2026, 12, 31), 100, 12.50)
-    m2 = Medicamento.de_registro("Amoxicilina 500mg;L2026B;2026-10-15;40;18.90")
-    # print(f"Dados de m1: {m1}") # ex.: Dipirona 500mg (L2026A) - 100 un. - val. 31/12/2026
-    # print(f"Dados de m2: {m2}") # ex.: Amoxicilina 500mg (L2026B) - 40 un. - val. 15/10/2026
-    # print(f"Dias para vencer de m2: {Medicamento.dias_para_vencer(m2.validade)}")
-    # print("Dispensando 20 medicamentos de m1")
-    # m1.dispensar(20)
-    # print(f"Quantidade de m1: {m1.quantidade}")
-
-    vencido = Medicamento("Soro Fisiológico", "L2025X", date(2025, 1, 10), 10, 5.0)
-    # try:
-    #     vencido.dispensar(1)
-    # except MedicamentoVencidoError as erro:
-    #     print(erro)
-
-    outro = Medicamento("Dipirona 500mg", "L2026A", date(2026, 1, 1), 0, 1.0)
-    print(f"m1 é igual a outro? {m1 == outro}")
-
-    estoque = [m1, m2, vencido, outro]
-    print("Exibindo lista ordenada por data (mais antigos primeiro): ")
-    for lote in sorted(estoque):
-        print(lote)
-
-    try:
-        m1.quantidade = -5
-    except ValueError as erro:
-        print(f"Erro esperado: {erro}")
-    except QuantidadeInvalidaError as erro:
-        print(erro)
+try:
+    m1 = Medicamento("a", "b1", date(2026, 10, 11), 5, 10.50)
+    m2 = Medicamento("a", "b1", date(2026, 10, 11), 5, 10.50)
+    print(m1 == m2)
+except MedicamentoVencidoError as erro:
+    print(erro)
+except QuantidadeInvalidaError as erro:
+    print(erro)
+except ValueError as erro:
+    print(erro)
