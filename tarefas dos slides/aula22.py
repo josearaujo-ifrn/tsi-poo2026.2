@@ -54,7 +54,7 @@ class Endereco:
     estado: str
 
 en1 = Endereco("rua vinte e cinco de março", 100, "São Paulo", "São Paulo")
-en1.rua = "avenida paulista" # ao tentar mudar o endereço,
+# en1.rua = "avenida paulista" # ao tentar mudar o endereço,
 # nao vai funcionar devido ao frozen true
 
 # item 4
@@ -62,9 +62,11 @@ en1.rua = "avenida paulista" # ao tentar mudar o endereço,
 class Aluno:
     media: float
     nome: str
-    
-turma = [Aluno(8.5, "Bia"), Aluno(9.1, "Ana")]
-print(sorted(turma)) # __lt__ gerado!
+
+turma1 = [Aluno(8.5, "Bia"), Aluno(9.1, "Ana")]
+turma2 = [Aluno(7.5, "Carlos"), Aluno(6.1, "Daniel")]
+print(sorted(turma1))
+print(sorted(turma2))
 
 # item 5
 # nao deveria, a conta bancaria deve ter validaçoes, como numero da conta/agencia,
