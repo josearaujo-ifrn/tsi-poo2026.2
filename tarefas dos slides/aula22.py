@@ -58,7 +58,13 @@ en1.rua = "avenida paulista" # ao tentar mudar o endereço,
 # nao vai funcionar devido ao frozen true
 
 # item 4
-# pendente
+@dataclass(order=True)
+class Aluno:
+    media: float
+    nome: str
+    
+turma = [Aluno(8.5, "Bia"), Aluno(9.1, "Ana")]
+print(sorted(turma)) # __lt__ gerado!
 
 # item 5
 # nao deveria, a conta bancaria deve ter validaçoes, como numero da conta/agencia,
