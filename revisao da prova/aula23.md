@@ -17,7 +17,7 @@ nao é necessario elif, ao verificar usando "if isinstance", os atributos vao se
 ■ 5. Qual a diferença entre um método com pass na superclasse e um @abstractmethod?
 ao usar abstractmethod, pode ser deixado um comentario com tres pares de aspas duplas ("""teste"""), diferente do pass, que pode ser esquecido depois
 
-### Nível 02 - Aplicação ###
+### Nível 02 -- Aplicação ###
 ■ 6. Veiculo(ABC): placa e diaria; calcular_aluguel(dias) abstrato; descricao() concreto
 – Carro (aluguel = diaria × dias) e Moto (20% de desconto sobre o mesmo cálculo)
 – Caminhao com taxa fixa de R$ 100 por aluguel — use super() onde couber
@@ -25,8 +25,10 @@ ao usar abstractmethod, pode ser deixado um comentario com tres pares de aspas d
 ■ 7. Locadora que AGREGA veículos: cadastrar, faturamento_previsto(dias) polimórfico
 
 ■ 8. Prove com TypeError que Veiculo não instancia
+ v = Veiculo("1", 10)
+TypeError: Can't instantiate abstract class Veiculo without an implementation for abstract method 'calcular_aluguel'
 
-### Nível 03 - Integação ###
+### Nível 03 -- Integação ###
 ■ 9. Modele: Restaurante TEM Cardapio (composição); Cardapio agrega Pratos
 
 ■ 10. Entregador(ABC) com taxa_entrega(distancia) abstrata; DeBike e DeMoto com regras próprias
