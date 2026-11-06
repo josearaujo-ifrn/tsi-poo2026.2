@@ -2,7 +2,7 @@
 
 * [X] **Mini-aula 1 — Associação**: Relação de uso ("A usa B"), passagem por parâmetro e exemplo `Pessoa` \+ `Interruptor`. *FINALIZADO*
 * [X] **Mini-aula 2 — Agregação**: Relação de posse ("A tem B"), partes criadas fora e armazenadas em atributos/coleções, exemplo `CarrinhoDeCompras` \+ `Produto`. *FINALIZADO*
-* [ ] **Mini-aula 3 — Composição**: Relação de criação todo/parte ("A é composto por B"), criação dentro do `__init__`, ciclo de vida atrelado, exemplo `Conta` \+ `Historico`.
+* [X] **Mini-aula 3 — Composição**: Relação de criação todo/parte ("A é composto por B"), criação dentro do `__init__`, ciclo de vida atrelado, exemplo `Conta` \+ `Historico`. *FINALIZADO*
 * [ ] **Mini-aula 4 — Comparativo &amp; Modelagem dos 3 Relacionamentos**: Matriz de decisão ("precisa lembrar?", "quem cria?"), Notação UML (seta, losango aberto, losango fechado) e modelagem de sistema completo (`Cliente`, `Pedido`, `Produto`, `ItemPedido`).
 
 #### **Bloco 2: Herança e Hierarquias**

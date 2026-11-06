@@ -29,3 +29,27 @@ class Biblioteca:
         # 3. Imprima o título e o autor de cada livro agregado
         pass
 # Teste seu código instanciando 2 livros e adicionando à biblioteca!
+
+### **Exercício 3.2 — Complete o Código** 
+Implemente o relacionamento de **Composição** entre a classe `Pessoa` e a classe `Endereco`. Ao instanciar uma `Pessoa`, ela deve criar internamente o seu próprio objeto `Endereco` com a rua e a cidade fornecidas:
+
+class Endereco:
+    def __init__(self, rua: str, cidade: str) -> None:
+        self.rua = rua
+        self.cidade = cidade
+
+    def obter_formatado(self) -> str:
+        return f"{self.rua}, {self.cidade}"
+
+class Pessoa:
+    def __init__(self, nome: str, rua: str, cidade: str) -> None:
+        self.nome = nome
+        # 1. Crie o objeto Endereco DENTRO do __init__ (Composição)
+
+    def exibir_dados(self) ->; None:
+        # 2. Imprima o nome e o endereço formatado chamando o método do Endereco interno
+        pass
+
+# Teste seu código instanciando apenas uma Pessoa (sem instanciar Endereco fora):
+# p = Pessoa("Carlos", "Av. Paulista", "São Paulo")
+# p.exibir_dados()
