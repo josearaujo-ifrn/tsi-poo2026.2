@@ -53,3 +53,21 @@ class Pessoa:
 # Teste seu código instanciando apenas uma Pessoa (sem instanciar Endereco fora):
 # p = Pessoa("Carlos", "Av. Paulista", "São Paulo")
 # p.exibir_dados()
+
+### **Exercício 4.1 — Sistema de Universidade**
+# 📜 Descrição do Cenário:
+Você foi contratado(a) para modelar o sistema de uma **Universidade**.
+1. **Classe** **Projetor**:
+  * Possui o método `exibir_slides()` que imprime uma mensagem como `"Exibindo slides da aula..."`.
+2. **Classe** **Professor**:
+  * Possui o atributo `nome`.
+  * Possui um método `dar_aula()` que recebe um objeto `Projetor` como parâmetro e chama o método de exibir slides. *(Atenção: Qual é o tipo de relacionamento aqui?)*
+3. **Classe** **GradeCurricular**:
+  * Possui o atributo `curso` (ex: `"Ciência da Computação"`).
+  * Possui o método `detalhar()` que imprime o nome do curso.
+4. **Classe** **Universidade**:
+  * Possui o atributo `nome`.
+  * Quando uma `Universidade` é instanciada no seu `__init__`, ela cria automaticamente a sua própria `GradeCurricular` interna. *(Atenção: Qual é o tipo de relacionamento aqui?)*
+  * A `Universidade` possui uma lista interna para guardar `Professor`es.
+  * Possui um método `contratar_professor()` que recebe um `Professor` já existente e o adiciona à lista. *(Atenção: Qual é o tipo de relacionamento aqui?)*
+  * Possui um método `relatorio()` que exibe o nome da universidade, os detalhes da grade curricular e o nome de todos os professores contratados.
