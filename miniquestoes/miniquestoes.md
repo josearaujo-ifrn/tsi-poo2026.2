@@ -71,3 +71,15 @@ Você foi contratado(a) para modelar o sistema de uma **Universidade**.
   * A `Universidade` possui uma lista interna para guardar `Professor`es.
   * Possui um método `contratar_professor()` que recebe um `Professor` já existente e o adiciona à lista. *(Atenção: Qual é o tipo de relacionamento aqui?)*
   * Possui um método `relatorio()` que exibe o nome da universidade, os detalhes da grade curricular e o nome de todos os professores contratados.
+
+### 📝 Exercicio 5.1 — Aula 5
+Crie uma superclasse `Veiculo` e duas subclasse `Carro` e `Moto`:
+
+1. **Superclasse** **Veiculo**:
+  * Contém os atributos `marca` e `modelo`.
+  * Contém o método `acelerar()` que imprime `"Veículo acelerando..."`.
+2. **Subclasse** **Carro**:
+  * Herda de `Veiculo`.
+  * Possui o atributo adicional `qtd_portas`.
+  * Usa `super().__init__()`.
+  * Sobrescreve o método `acelerar()` para imprimir `"Carro [marca] [modelo] acelerando com [qtd_portas] portas!"`.
