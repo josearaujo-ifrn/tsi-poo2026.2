@@ -83,3 +83,61 @@ Crie uma superclasse `Veiculo` e duas subclasse `Carro` e `Moto`:
   * Possui o atributo adicional `qtd_portas`.
   * Usa `super().__init__()`.
   * Sobrescreve o método `acelerar()` para imprimir `"Carro [marca] [modelo] acelerando com [qtd_portas] portas!"`.
+
+
+#### 📜 Exercicio 6.1 - Aula 6
+1. **Crie a superclasse base** **Documento**:
+  * O `__init__` deve receber o atributo `titulo` (string) e `conteudo` (string).
+2. **Crie o Mixin** **ExportavelJSONMixin**:
+  * Não precisa de `__init__`.
+  * Possui o método `para_json(self) -&gt; str` que converte e retorna uma string simulando formato JSON. Por exemplo: `f'{{"titulo": "{self.titulo}", "conteudo": "{self.conteudo}"}}'` *(Atenção: o Mixin assume que quem o herdar terá os atributos* *titulo* *e* *conteudo* *!)*
+3. **Crie a subclasse** **RelatorioFinanceiro**:
+  * Herda de `Documento` **E** de `ExportavelJSONMixin` (Herança Múltipla).
+  * O `__init__` recebe `titulo`, `conteudo` e o atributo específico `valor_total` (float), utilizando `super().__init__(titulo, conteudo)` para reaproveitar a base.
+4. **Teste seu código**:
+  * Instancie um `RelatorioFinanceiro("Balanço Q3", "Lucro líquido elevado", 150000.0)`.
+  * Imprima o resultado da chamada do método `.para_json()`.
+
+
+### 🔥 **Super Desafio Integrador do Bloco 2: Sistema de Gestão de Frota e Logística**
+
+Este desafio junta **TUDO** o que aprendemos até agora: **Associação, Agregação, Composição, Herança Simples, Sobrescrita e Mixin (Herança Múltipla)**!
+
+#### 📜 Descrição do Sistema:
+
+1. **Mixin** **NotificavelMixin**:
+  * Possui o método `notificar(self, mensagem: str) -&gt; None` que imprime: `f"[NOTIFICAÇÃO]: {mensagem}"`.
+2. **Superclasse** **Veiculo**:
+  * `__init__`: recebe `placa` (str) e `capacidade_carga` (float).
+  * Método `calcular_custo_viagem(self, distancia_km: float) -&gt; float`: retorna o custo base calculado como `distancia_km * 2.0`.
+3. **Subclasse** **Caminhao** **(Herda de** **Veiculo** **)**:
+  * `__init__`: recebe `placa`, `capacidade_carga` e `qtd_eixos` (int). Usa `super().__init__()`.
+  * **Sobrescrita**: Sobrescreve `calcular_custo_viagem(self, distancia_km: float) -&gt; float`:
+    * Obtém o custo base chamando o método da classe pai com `super()`.
+    * Adiciona um valor de pedágio extra: `qtd_eixos * 50.0`.
+    * Retorna o valor total.
+4. **Classe** **Motorista**:
+  * `__init__`: recebe `nome` (str) e `cnh` (str).
+5. **Classe** **Rota**:
+  * `__init__`: recebe `origem` (str), `destino` (str) e `distancia_km` (float).
+  * Método `detalhar(self) -&gt; str`: retorna algo como `f"{self.origem} -&gt; {self.destino} ({self.distancia_km} km)"`.
+6. **Classe** **GPS**:
+  * Método `calcular_tempo(self, distancia_km: float) -&gt; None`: imprime `f"[GPS]: Tempo estimado para {distancia_km} km é de {distancia_km / 60:.1f} horas."`.
+7. **Classe** **Viagem** **(Herda de** **NotificavelMixin** **)**:
+  * **Composição**: No `__init__`, recebe `origem`, `destino` e `distancia_km`, e **instancia internamente** o seu próprio objeto `Rota`.
+  * **Agregação**: No `__init__`, recebe também um objeto `veiculo` (do tipo `Veiculo`) e um objeto `motorista` (do tipo `Motorista`), ambos criados fora.
+  * **Associação**: Possui o método `iniciar_viagem(self, gps: GPS) -&gt; None`:
+    * Recebe o objeto `gps` por parâmetro.
+    * Chama o método `gps.calcular_tempo(...)` usando a distância da rota.
+    * Chama o método `self.notificar(...)` (herdado do Mixin) avisando que a viagem do motorista X com o veículo de placa Y começou.
+  * Método `resumo(self) -&gt; None`:
+    * Imprime o motorista, a placa do veículo, a rota detalhada e o custo total da viagem (chamando `veiculo.calcular_custo_viagem`).
+
+### 🧪 Roteiro de Teste do Script:
+
+1. Instancie um `Motorista` ("Carlos", "123456").
+2. Instancie um `Caminhao` ("ABC-1234", 15000.0, qtd\_eixos=4).
+3. Instancie um `GPS`.
+4. Instancie uma `Viagem` (passando a origem `"Rio de Janeiro"`, destino `"São Paulo"`, distância `430.0`, o caminhão e o motorista).
+5. Inicie a viagem passando o `gps`.
+6. Exiba o resumo da viagem!

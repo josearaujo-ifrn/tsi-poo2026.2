@@ -8,7 +8,8 @@
 #### **Bloco 2: Herança e Hierarquias**
 
 * [X] **Mini-aula 5 — Herança Simples e Sobrescrita**: Relação "É UM", reutilização de código com `super().__init__()`, sobrescrita de métodos, exemplo `Animal`/`Gato`/`Cachorro` e duelo "é um" vs. "tem um". *FINALIZADO*
-* [ ] **Mini-aula 6 — Herança Múltipla e MRO**: Múltiplas superclasses, uso seguro de Mixins (`Autenticavel`), problema do diamante e Ordem de Resolução de Métodos (`__mro__`).
+* [X] **Mini-aula 6 — Herança Múltipla e MRO**: Múltiplas superclasses, uso seguro de Mixins (`Autenticavel`), problema do diamante e Ordem de Resolução de Métodos (`__mro__`). *FINALIZADO*
+* [] **Desafio Integrador**: Desafio com Associação, Agregação, Composição, Herança Simples, Sobrescrita e Mixin (Herança Múltipla).
 
 #### **Bloco 3: Polimorfismo, Injeção e Abstração**
 
