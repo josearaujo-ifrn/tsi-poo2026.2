@@ -165,3 +165,18 @@ Vamos exercitar a Injeção de Dependência!
   * Seu `__init__` deve receber a dependência do banco de dados (`banco`) e armazená-la.
   * Possui o método `registrar_usuario(self, nome: str) -&gt; None` que chama `self.banco.salvar(f"Usuário {nome}")`.
 3. Instancie o `UsuarioService` duas vezes: uma injetando o `BancoMySQL` e outra injetando o `BancoPostgreSQL`, e registre um usuário em cada.
+
+### 📝 Exercício 9.1 — Aula 9
+
+Crie uma estrutura de **Formas Geométricas** utilizando uma **Classe Abstrata**:
+
+1. **Classe Abstrata** **Forma** **(Herda de** **ABC** **)**:
+  * Possui o método abstrato `@abstractmethod` chamado `calcular_area(self) -&gt; float`.
+2. **Subclasse** **Quadrado**:
+  * Herda de `Forma`.
+  * Seu `__init__` recebe `lado: float`.
+  * Implementa obrigatoriamente o método `calcular_area()` retornando `lado * lado`.
+3. **Subclasse** **Circulo**:
+  * Herda de `Forma`.
+  * Seu `__init__` recebe `raio: float`.
+  * Implementa obrigatoriamente o método `calcular_area()` retornando `3.14 * (raio ** 2)`.
