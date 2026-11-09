@@ -141,3 +141,15 @@ Este desafio junta **TUDO** o que aprendemos até agora: **Associação, Agrega�
 4. Instancie uma `Viagem` (passando a origem `"Rio de Janeiro"`, destino `"São Paulo"`, distância `430.0`, o caminhão e o motorista).
 5. Inicie a viagem passando o `gps`.
 6. Exiba o resumo da viagem!
+
+
+### 📝 Exercicio 7.1 — Aula 7
+
+Crie duas classes independentes sem nenhuma herança entre elas: `NotificadorEmail` e `NotificadorSMS`.
+
+1. **Classe** **NotificadorEmail**:
+  * Método `enviar(self, mensagem: str) -&gt; None`: imprime `f"Enviando E-mail: {mensagem}"`.
+2. **Classe** **NotificadorSMS**:
+  * Método `enviar(self, mensagem: str) -&gt; None`: imprime `f"Enviando SMS: {mensagem}"`.
+3. **Função Polimórfica** **enviar\_alerta(notificador, mensagem: str) -&gt; None**:
+  * Recebe um objeto `notificador` generico e uma `mensagem`, e chama `notificador.enviar(mensagem)`.

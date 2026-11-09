@@ -13,7 +13,7 @@
 
 #### **Bloco 3: Polimorfismo, Injeção e Abstração**
 
-* [ ] **Mini-aula 7 — Polimorfismo e Duck Typing**: Mesma mensagem para múltiplos objetos, polimorfismo por herança vs. Duck Typing ("se anda e grasna como pato..."), sobrecarga de operadores (`dunders`).
+* [X] **Mini-aula 7 — Polimorfismo e Duck Typing**: Mesma mensagem para múltiplos objetos, polimorfismo por herança vs. Duck Typing ("se anda e grasna como pato..."), sobrecarga de operadores (`dunders`). *FINALIZADO*
 * [ ] **Mini-aula 8 — Injeção de Dependência**: Inversão de Controle (IoC), passagem de dependências pelo construtor e facilidade de testes.
 * [ ] **Mini-aula 9 — Classes e Métodos Abstratos (ABC)**: Garantia de contratos explícitos com `ABC` e `@abstractmethod`, impedimento de instanciação genérica e implementação obrigatória nas subclasses.
 
