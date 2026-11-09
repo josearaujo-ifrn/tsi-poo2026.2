@@ -153,3 +153,15 @@ Crie duas classes independentes sem nenhuma herança entre elas: `NotificadorEma
   * Método `enviar(self, mensagem: str) -&gt; None`: imprime `f"Enviando SMS: {mensagem}"`.
 3. **Função Polimórfica** **enviar\_alerta(notificador, mensagem: str) -&gt; None**:
   * Recebe um objeto `notificador` generico e uma `mensagem`, e chama `notificador.enviar(mensagem)`.
+
+  ### 📝 Exercício 8.1 — Aula 8
+Vamos exercitar a Injeção de Dependência!
+
+1. Crie duas classes de banco de dados independentes: `BancoMySQL` e `BancoPostgreSQL`.
+  * Ambas devem ter um método `salvar(self, dados: str) -&gt; None`.
+  * `BancoMySQL`: imprime `f"Salvando '{dados}' no banco MySQL..."`.
+  * `BancoPostgreSQL`: imprime `f"Salvando '{dados}' no banco PostgreSQL..."`.
+2. Crie a classe `UsuarioService`:
+  * Seu `__init__` deve receber a dependência do banco de dados (`banco`) e armazená-la.
+  * Possui o método `registrar_usuario(self, nome: str) -&gt; None` que chama `self.banco.salvar(f"Usuário {nome}")`.
+3. Instancie o `UsuarioService` duas vezes: uma injetando o `BancoMySQL` e outra injetando o `BancoPostgreSQL`, e registre um usuário em cada.
