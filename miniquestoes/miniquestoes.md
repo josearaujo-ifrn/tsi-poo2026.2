@@ -205,3 +205,15 @@ Crie uma estrutura de **Formas Geométricas** utilizando uma **Classe Abstrata**
     * Recebe um objeto do tipo `MetodoPagamento` (Polimorfismo).
     * Chama `sucesso = pagamento.processar_pagamento()`.
     * Se `sucesso` for `True`, chama o notificador injetado enviando a mensagem: `f"Confirmação: Pagamento de R$ {pagamento.valor:.2f} concluído!"`
+
+### Exercicio 10.1 — Aula 10
+
+Crie uma Dataclass para representar um **Item de Pedido**:
+
+1. Use o decorador `@dataclass`.
+2. A classe `Item` deve ter os campos:
+  * `nome: str`
+  * `preco_unitario: float`
+  * `quantidade: int`
+3. Crie um método normal dentro da dataclass chamado `calcular_total(self) -&gt; float` que retorna `preco_unitario * quantidade`.
+4. Instancie 1 item, imprima a representação automática dele e exiba o resultado do método `calcular_total()`.
