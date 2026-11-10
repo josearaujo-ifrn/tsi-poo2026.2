@@ -240,3 +240,54 @@ class ContaCorrente:
 
 1. Refatore a classe `ContaCorrente` para que ela seja uma classe pura de regra de negócio (sem `input()` e sem `print()`). O método `sacar(self, valor: float) -&gt; bool` deve apenas realizar a subtração se houver saldo suficiente e retornar `True` (se conseguiu sacar) ou `False` (se não houver saldo).
 2. Escreva fora da classe (simulando a função/ponto de entrada da interface) a lógica que lê a entrada do usuário (`valor`), chama o método `sacar()` da conta e exibe a mensagem de sucesso ou erro com base no retorno booleano.
+
+### 🏆 **Desafio Integrador Final 1 — Prova Prática de POO**
+
+Inspirado diretamente na estrutura oficial da sua avaliação (`POO_-_Aval1_-_E1-T6.1.pdf`), este desafio avalia a construção de uma solução completa em **um único arquivo Python**, contendo construtor, propriedades validadas, métodos estáticos/de classe, dunders, exceções customizadas e métodos de negócio.
+
+---
+
+#### 📌 **Contexto da Prova:**
+
+O almoxarifado de um laboratório de pesquisas precisa controlar, de forma individual, os lotes de **Reativos Químicos** mantidos em estoque. Cada lote possui um nome de reativo, um código de lote, uma data de validade, uma quantidade de frascos disponíveis e um custo por frasco.
+
+---
+
+#### 📜 **Requisitos da Avaliação (5 Itens de 10 Pontos Cada):**
+
+* **Item 1 (PEP 8 & Type Hints - Avaliação Transversal)**:
+  * Nomes de classe (`ReativoQuimico`), atributos, métodos e exceções devem seguir rigorosamente a PEP 8.
+  * **Todos** os parâmetros, atributos e retornos de método devem conter **Type Hints** explícitos (`str`, `int`, `float`, `date`, `bool`, `None`).
+* **Item 2 (Construtor e Encapulamento com** **@property** **)**:
+  * Defina o construtor `__init__(self, nome: str, codigo_lote: str, validade: date, quantidade: int, custo_unitario: float)`.
+  * Os atributos `quantidade` e `custo_unitario` devem ser protegidos (ex: `_quantidade` e `_custo_unitario`) e expostos através de `@property` com setters de validação:
+    * `quantidade` não pode ser negativa (`< 0`). Caso contrário, lance `ValueError("A quantidade não pode ser negativa.")`.
+    * `custo_unitario` deve ser estritamente maior que zero (`<= 0` lança erro). Caso contrário, lance `ValueError("O custo unitario deve ser maior que zero.")`.
+    * As validações devem ser aplicadas tanto no construtor quanto em qualquer atribuição posterior.
+* **Item 3 (** **@classmethod** **e** **@staticmethod** **)**:
+  * Implemente o método de classe `@classmethod` chamado `de_string(cls, texto: str) -> "ReativoQuimico"`, que receba uma string no formato `"nome;codigo_lote;AAAA-MM-DD;quantidade;custo_unitario"` e retorne uma instância de `ReativoQuimico`.
+  * Implemente o método estático `@staticmethod` chamado `dias_para_vencer(validade: date) -> int`, que receba uma data de validade e retorne quantos dias faltam em relação a `date.today()`.
+* **Item 4 (Métodos Especiais / Dunders)**:
+  * `__str__(self) -> str`: retorna a descrição legível (ex: `"Reativo: Ácido Clorídrico | Lote: L2026X | Qtd: 15 | Validade: 2026-12-31"`).
+  * `__repr__(self) -> str`: retorna a representação técnica para depuração.
+  * `__eq__(self, outro: object) -> bool`: dois reativos são iguais se possuem o mesmo `nome` e o mesmo `codigo_lote`.
+  * `__lt__(self, outro: "ReativoQuimico") -> bool`: compara dois objetos pela data de `validade`, permitindo que uma lista de reativos seja ordenada via `sorted()` da validade mais próxima para a mais distante.
+* **Item 5 (Exceções Customizadas e Regras de Negócio)**:
+  * Crie duas exceções customizadas herdando de `Exception`: `QuantidadeInvalidaError` e `ReativoVencidoError`.
+  * Implemente o método `retirar_do_estoque(self, qtd: int) -> None`:
+    * Lance `QuantidadeInvalidaError` se `qtd <= 0` ou se `qtd > self.quantidade`.
+    * Lance `ReativoVencidoError` se a data de validade já tiver passado (`self.validade < date.today()`).
+    * Se tudo estiver válido, reduza a quantidade do estoque.
+  * Implemente o método `repor_estoque(self, qtd: int) -> None`: aumenta a quantidade no estoque reaproveitando o setter validado.
+
+---
+
+#### 🧪 **Bloco de Demonstração Obrigatorio:**
+
+No final do arquivo, inclua o bloco `if __name__ == "__main__":` demonstrando:
+
+1. Criação de instâncias normais e via `de_string()`.
+2. Teste do `dias_para_vencer()`.
+3. Execução de `retirar_do_estoque()` e `repor_estoque()`.
+4. Captura com `try/except` dos casos de erro (`QuantidadeInvalidaError`, `ReativoVencidoError` e `ValueError` do setter).
+5. Comparação `==` e ordenação de uma lista de lotes com `sorted()`.
