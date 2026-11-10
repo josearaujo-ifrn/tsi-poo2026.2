@@ -180,3 +180,28 @@ Crie uma estrutura de **Formas Geométricas** utilizando uma **Classe Abstrata**
   * Herda de `Forma`.
   * Seu `__init__` recebe `raio: float`.
   * Implementa obrigatoriamente o método `calcular_area()` retornando `3.14 * (raio ** 2)`.
+
+
+  #### **Super Desafio Integrador do Bloco 3: Sistema de Checkout e Processamento de Pagamentos**
+
+1. **Classe Abstrata** **MetodoPagamento** **(Herda de** **ABC** **)**:
+  * O `__init__` recebe `valor: float`.
+  * Possui o método abstrato `@abstractmethod` denominado `processar_pagamento(self) -&gt; bool`.
+2. **Subclasses Concretas de Pagamento**:
+  * **PagamentoCartao** (Herda de `MetodoPagamento`):
+    * O `__init__` recebe `valor: float` e `numero_cartao: str` (usa `super().__init__`).
+    * Implementa `processar_pagamento(self) -&gt; bool`: exibe `f"Pagamento de R$ {self.valor:.2f} aprovado no Cartão {self.numero_cartao}."` e retorna `True`.
+  * **PagamentoPix** (Herda de `MetodoPagamento`):
+    * O `__init__` recebe `valor: float` e `chave_pix: str` (usa `super().__init__`).
+    * Implementa `processar_pagamento(self) -&gt; bool`: exibe `f"Pagamento de R$ {self.valor:.2f} aprovado via PIX ({self.chave_pix})."` e retorna `True`.
+3. **Serviços de Notificação (Duck Typing)**:
+  * Crie duas classes totalmente independentes (sem superclasse comum): **NotificadorEmail** e **NotificadorSMS**.
+  * Ambas devem ter exatamente o mesmo método: `enviar_notificacao(self, mensagem: str) -&gt; None`.
+  * `NotificadorEmail`: exibe `f"[E-MAIL]: {mensagem}"`.
+  * `NotificadorSMS`: exibe `f"[SMS]: {mensagem}"`.
+4. **Classe** **Checkout**:
+  * **Injeção de Dependência**: O `__init__` recebe por parâmetro o objeto `notificador` (que utilizará Duck Typing para chamar `.enviar_notificacao()`).
+  * Método **realizar\_checkout(self, pagamento: MetodoPagamento) -&gt; None**:
+    * Recebe um objeto do tipo `MetodoPagamento` (Polimorfismo).
+    * Chama `sucesso = pagamento.processar_pagamento()`.
+    * Se `sucesso` for `True`, chama o notificador injetado enviando a mensagem: `f"Confirmação: Pagamento de R$ {pagamento.valor:.2f} concluído!"`

@@ -9,13 +9,14 @@
 
 * [X] **Mini-aula 5 — Herança Simples e Sobrescrita**: Relação "É UM", reutilização de código com `super().__init__()`, sobrescrita de métodos, exemplo `Animal`/`Gato`/`Cachorro` e duelo "é um" vs. "tem um". *FINALIZADO*
 * [X] **Mini-aula 6 — Herança Múltipla e MRO**: Múltiplas superclasses, uso seguro de Mixins (`Autenticavel`), problema do diamante e Ordem de Resolução de Métodos (`__mro__`). *FINALIZADO*
-* [X] **Desafio Integrador**: Desafio com Associação, Agregação, Composição, Herança Simples, Sobrescrita e Mixin (Herança Múltipla). *FINALIZADO*
+* [X] **Desafio Integrador do Bloco 2**: Desafio com Associação, Agregação, Composição, Herança Simples, Sobrescrita e Mixin (Herança Múltipla). *FINALIZADO*
 
 #### **Bloco 3: Polimorfismo, Injeção e Abstração**
 
 * [X] **Mini-aula 7 — Polimorfismo e Duck Typing**: Mesma mensagem para múltiplos objetos, polimorfismo por herança vs. Duck Typing ("se anda e grasna como pato..."), sobrecarga de operadores (`dunders`). *FINALIZADO*
 * [X] **Mini-aula 8 — Injeção de Dependência**: Inversão de Controle (IoC), passagem de dependências pelo construtor e facilidade de testes. *FINALIZADO*
 * [X] **Mini-aula 9 — Classes e Métodos Abstratos (ABC)**: Garantia de contratos explícitos com `ABC` e `@abstractmethod`, impedimento de instanciação genérica e implementação obrigatória nas subclasses. *FINALIZADO*
+* [X] **Desafio Integrador do Bloco 3**: Classes Abstratas (ABC) e Contratos, Polimorfismo via Herança, Duck Typing (Polimorfismo sem Herança), Injeção de Dependência *FINALIZADO*
 
 #### **Bloco 4: Recursos Avançados, Organização e Revisão**
 
