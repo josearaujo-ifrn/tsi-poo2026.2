@@ -21,5 +21,5 @@
 #### **Bloco 4: Recursos Avançados, Organização e Revisão**
 
 * [X] **Mini-aula 10 — Dataclasses**: Eliminação de boilerplate com `@dataclass`, uso de `field(default_factory=...)`, imutabilidade (`frozen=True`), ordenação e quando utilizar classe convencional vs. dataclass. *FINALIZADO*
-* [ ] **Mini-aula 11 — Organização de Software e Arquitetura**: Módulos e pacotes, alta coesão e baixo acoplamento, Princípio da Responsabilidade Única e estrutura de referência para projetos.
-* [ ] **Mini-aula 12 — Revisão Geral e Resolução de Exercícios Práticos**: Análise de cenários complexos (estilo sistema de Delivery), mapeamento de substantivos/verbos para classes/métodos e checklist de erros comuns.
+* [X] **Mini-aula 11 — Organização de Software e Arquitetura**: Módulos e pacotes, alta coesão e baixo acoplamento, Princípio da Responsabilidade Única e estrutura de referência para projetos. *FINALIZADO*
+* [X] **Mini-aula 12 — Revisão Geral e Resolução de Exercícios Práticos**: Análise de cenários complexos (estilo sistema de Delivery), mapeamento de substantivos/verbos para classes/métodos e checklist de erros comuns. *FINALIZADO*

@@ -217,3 +217,26 @@ Crie uma Dataclass para representar um **Item de Pedido**:
   * `quantidade: int`
 3. Crie um método normal dentro da dataclass chamado `calcular_total(self) -&gt; float` que retorna `preco_unitario * quantidade`.
 4. Instancie 1 item, imprima a representação automática dele e exiba o resultado do método `calcular_total()`.
+
+### Exercício 11.1 — Aula 11
+
+Analise a classe abaixo que viola o **Princípio da Responsabilidade Única (SRP)** por misturar regra de negócio com interface do usuário:
+
+# CÓDIGO COM PROBLEMA DE DESIGN:
+class ContaCorrente:
+    def __init__(self, saldo: float) -&gt; None:
+        self.saldo = saldo
+
+    def sacar_com_interface(self) -&gt; None:
+        # A classe de negócio está fazendo input() e print() diretamente!
+        valor = float(input("Digite o valor do saque: "))
+        if valor &lt;= self.saldo:
+            self.saldo -= valor
+            print(f"Saque de R$ {valor:.2f} realizado! Saldo atual: R$ {self.saldo:.2f}")
+        else:
+            print("Erro: Saldo insuficiente!")
+
+**Sua Tarefa de Refatoração:**
+
+1. Refatore a classe `ContaCorrente` para que ela seja uma classe pura de regra de negócio (sem `input()` e sem `print()`). O método `sacar(self, valor: float) -&gt; bool` deve apenas realizar a subtração se houver saldo suficiente e retornar `True` (se conseguiu sacar) ou `False` (se não houver saldo).
+2. Escreva fora da classe (simulando a função/ponto de entrada da interface) a lógica que lê a entrada do usuário (`valor`), chama o método `sacar()` da conta e exibe a mensagem de sucesso ou erro com base no retorno booleano.

@@ -347,15 +347,31 @@ from dataclasses import dataclass, field
 # c2.realizar_checkout(pp)
 
 # Exercício 10 - Aula 10: Dataclasses
-@dataclass
-class Item:
-    nome: str
-    preco_unitario: float
-    quantidade: int
+# @dataclass
+# class Item:
+#     nome: str
+#     preco_unitario: float
+#     quantidade: int
 
-    def calcular_total(self) -> float:
-        return self.preco_unitario * self.quantidade
+#     def calcular_total(self) -> float:
+#         return self.preco_unitario * self.quantidade
 
-i = Item("Biscoito Globo", 5.50, 3)
-print(i)
-print(i.calcular_total())
+# i = Item("Biscoito Globo", 5.50, 3)
+# print(i)
+# print(i.calcular_total())
+
+# CÓDIGO COM PROBLEMA DE DESIGN: 
+class ContaCorrente: 
+    def __init__(self, saldo: float) -> None: 
+        self.saldo = saldo 
+
+    def sacar_com_interface(self, valor: float) -> bool:
+        if valor <= self.saldo: 
+            self.saldo -= valor 
+            return True
+        else:
+            return False
+
+c = ContaCorrente(100.0)
+print(c.sacar_com_interface(50))
+print(c.sacar_com_interface(150))
