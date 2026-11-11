@@ -241,53 +241,146 @@ class ContaCorrente:
 1. Refatore a classe `ContaCorrente` para que ela seja uma classe pura de regra de negócio (sem `input()` e sem `print()`). O método `sacar(self, valor: float) -&gt; bool` deve apenas realizar a subtração se houver saldo suficiente e retornar `True` (se conseguiu sacar) ou `False` (se não houver saldo).
 2. Escreva fora da classe (simulando a função/ponto de entrada da interface) a lógica que lê a entrada do usuário (`valor`), chama o método `sacar()` da conta e exibe a mensagem de sucesso ou erro com base no retorno booleano.
 
-### 🏆 **Desafio Integrador Final 1 — Prova Prática de POO**
 
-Inspirado diretamente na estrutura oficial da sua avaliação (`POO_-_Aval1_-_E1-T6.1.pdf`), este desafio avalia a construção de uma solução completa em **um único arquivo Python**, contendo construtor, propriedades validadas, métodos estáticos/de classe, dunders, exceções customizadas e métodos de negócio.
+### 🏆 **Desafio Integrador Final 2 — Projeto Modular em Camadas (E-Commerce Delivery)**
 
----
-
-#### 📌 **Contexto da Prova:**
-
-O almoxarifado de um laboratório de pesquisas precisa controlar, de forma individual, os lotes de **Reativos Químicos** mantidos em estoque. Cada lote possui um nome de reativo, um código de lote, uma data de validade, uma quantidade de frascos disponíveis e um custo por frasco.
+Você deverá construir um sistema completo de **Gestão de Pedidos e Delivery**, estruturado em **módulos e pacotes separados**, aplicando **todos os conceitos estudados nos 4 blocos** e os recursos avançados da prova.
 
 ---
 
-#### 📜 **Requisitos da Avaliação (5 Itens de 10 Pontos Cada):**
+### 📁 **Estrutura de Pastas e Módulos Exigida**
 
-* **Item 1 (PEP 8 & Type Hints - Avaliação Transversal)**:
-  * Nomes de classe (`ReativoQuimico`), atributos, métodos e exceções devem seguir rigorosamente a PEP 8.
-  * **Todos** os parâmetros, atributos e retornos de método devem conter **Type Hints** explícitos (`str`, `int`, `float`, `date`, `bool`, `None`).
-* **Item 2 (Construtor e Encapulamento com** **@property** **)**:
-  * Defina o construtor `__init__(self, nome: str, codigo_lote: str, validade: date, quantidade: int, custo_unitario: float)`.
-  * Os atributos `quantidade` e `custo_unitario` devem ser protegidos (ex: `_quantidade` e `_custo_unitario`) e expostos através de `@property` com setters de validação:
-    * `quantidade` não pode ser negativa (`< 0`). Caso contrário, lance `ValueError("A quantidade não pode ser negativa.")`.
-    * `custo_unitario` deve ser estritamente maior que zero (`<= 0` lança erro). Caso contrário, lance `ValueError("O custo unitario deve ser maior que zero.")`.
-    * As validações devem ser aplicadas tanto no construtor quanto em qualquer atribuição posterior.
-* **Item 3 (** **@classmethod** **e** **@staticmethod** **)**:
-  * Implemente o método de classe `@classmethod` chamado `de_string(cls, texto: str) -> "ReativoQuimico"`, que receba uma string no formato `"nome;codigo_lote;AAAA-MM-DD;quantidade;custo_unitario"` e retorne uma instância de `ReativoQuimico`.
-  * Implemente o método estático `@staticmethod` chamado `dias_para_vencer(validade: date) -> int`, que receba uma data de validade e retorne quantos dias faltam em relação a `date.today()`.
-* **Item 4 (Métodos Especiais / Dunders)**:
-  * `__str__(self) -> str`: retorna a descrição legível (ex: `"Reativo: Ácido Clorídrico | Lote: L2026X | Qtd: 15 | Validade: 2026-12-31"`).
-  * `__repr__(self) -> str`: retorna a representação técnica para depuração.
-  * `__eq__(self, outro: object) -> bool`: dois reativos são iguais se possuem o mesmo `nome` e o mesmo `codigo_lote`.
-  * `__lt__(self, outro: "ReativoQuimico") -> bool`: compara dois objetos pela data de `validade`, permitindo que uma lista de reativos seja ordenada via `sorted()` da validade mais próxima para a mais distante.
-* **Item 5 (Exceções Customizadas e Regras de Negócio)**:
-  * Crie duas exceções customizadas herdando de `Exception`: `QuantidadeInvalidaError` e `ReativoVencidoError`.
-  * Implemente o método `retirar_do_estoque(self, qtd: int) -> None`:
-    * Lance `QuantidadeInvalidaError` se `qtd <= 0` ou se `qtd > self.quantidade`.
-    * Lance `ReativoVencidoError` se a data de validade já tiver passado (`self.validade < date.today()`).
-    * Se tudo estiver válido, reduza a quantidade do estoque.
-  * Implemente o método `repor_estoque(self, qtd: int) -> None`: aumenta a quantidade no estoque reaproveitando o setter validado.
+Seu projeto deve ser organizado na seguinte estrutura de arquivos:
+
+```
+sistema_ecommerce/
+│
+├── excecoes/
+│   ├── __init__.py
+│   └── customizadas.py         # Exceções personalizadas do sistema
+│
+├── mixins/
+│   ├── __init__.py
+│   └── notificavel.py          # Mixin para notificações do sistema
+│
+├── modelos/
+│   ├── __init__.py
+│   ├── produto.py              # ABC, @property, @classmethod, @staticmethod, Dunders
+│   └── item_pedido.py          # Dataclass, Agregação do Produto
+│
+├── servicos/
+│   ├── __init__.py
+│   ├── notificadores.py        # Duck Typing (Email e SMS)
+│   └── pedido_service.py       # Regra de negócio, Injeção de Dependência, Composição e SRP
+│
+└── main.py                     # Ponto de entrada (Imports, Interface CLI, try/except)
+
+```
 
 ---
 
-#### 🧪 **Bloco de Demonstração Obrigatorio:**
+### 📜 **Especificação Detalhada por Módulo**
 
-No final do arquivo, inclua o bloco `if __name__ == "__main__":` demonstrando:
+#### 1\. `excecoes/customizadas.py`
 
-1. Criação de instâncias normais e via `de_string()`.
-2. Teste do `dias_para_vencer()`.
-3. Execução de `retirar_do_estoque()` e `repor_estoque()`.
-4. Captura com `try/except` dos casos de erro (`QuantidadeInvalidaError`, `ReativoVencidoError` e `ValueError` do setter).
-5. Comparação `==` e ordenação de uma lista de lotes com `sorted()`.
+Crie duas exceções customizadas herdando de `Exception`:
+
+* `EstoqueInsuficienteError(Exception)`
+* `CupomInvalidoError(Exception)`
+
+---
+
+#### 2\. `mixins/notificavel.py`
+
+Crie a classe **NotificavelMixin**:
+
+* Possui o método `notificar(self, mensagem: str) -&gt; None` que exibe a mensagem formatada com `[NOTIFICAÇÃO SISTEMA]: {mensagem}`.
+
+---
+
+#### 3\. `modelos/produto.py`
+
+Neste módulo, implementaremos **Herança, ABC,** **@property** **,** **@classmethod** **,** **@staticmethod** **e Dunders**:
+
+1. **Classe Abstrata** **Produto(ABC)**:
+  * **Atributos protegidos**: `_nome: str`, `_codigo: str`, `_preco: float` e `validade: date`.
+  * **Validação com** **@property**:
+    * `preco`: o setter deve garantir que o preço seja estritamente maior que zero (`&lt;= 0` lança `ValueError("O preço deve ser maior que zero.")`).
+  * **Método de Classe (** **@classmethod** **)**:
+    * `de_string(cls, texto: str) -&gt; "Produto"`: recebe uma string no formato `"TIPO;Nome;Codigo;Preco;AAAA-MM-DD;EXTRAS"` (onde TIPO pode ser `"FISICO"` ou `"DIGITAL"`) e retorna a instância correta da subclasse (`ProdutoFisico` ou `ProdutoDigital`).
+  * **Método Estático (** **@staticmethod** **)**:
+    * `calcular_imposto_padrao(valor: float) -&gt; float`: retorna `valor * 0.10` (10% de imposto base).
+  * **Métodos Especiais (Dunders)**:
+    * `__str__(self) -&gt; str`: exibição legível do produto.
+    * `__repr__(self) -&gt; str`: representação técnica de depuração.
+    * `__eq__(self, outro: object) -&gt; bool`: dois produtos são iguais se possuem o mesmo `_codigo`.
+    * `__lt__(self, outro: "Produto") -&gt; bool`: compara produtos pela data de `validade` (para permitir ordenação via `sorted()`).
+  * **Método Abstrato**:
+    * `@abstractmethod def calcular_preco_final(self) -&gt; float`: assinatura obrigatória para as subclasses.
+2. **Subclasse** **ProdutoFisico(Produto)**:
+  * Herda de `Produto`.
+  * Atributo adicional: `peso_kg: float`.
+  * Sobrescreve `calcular_preco_final(self) -&gt; float`: calcula o frete como `peso_kg * 5.0` e retorna `self.preco + frete`. Usa `super().__init__()`.
+3. **Subclasse** **ProdutoDigital(Produto)**:
+  * Herda de `Produto`.
+  * Atributo adicional: `tamanho_mb: float`.
+  * Sobrescreve `calcular_preco_final(self) -&gt; float`: retorna diretamente `self.preco` (sem frete). Usa `super().__init__()`.
+
+---
+
+#### 4\. `modelos/item_pedido.py`
+
+Crie uma **Dataclass**:
+
+* `@dataclass` **ItemPedido**:
+  * Campos: `produto: Produto` (**Agregação**) e `quantidade: int`.
+  * Método: `subtotal(self) -&gt; float`, que retorna `self.produto.calcular_preco_final() * self.quantidade`.
+
+---
+
+#### 5\. `servicos/notificadores.py`
+
+Implemente o **Duck Typing**:
+
+* Crie duas classes independentes sem superclasse comum: **NotificadorEmail** e **NotificadorSMS**.
+* Ambas devem ter a mesma assinatura de método: `enviar(self, destinatario: str, mensagem: str) -&gt; None`.
+  * `NotificadorEmail`: imprime `f"[E-MAIL para {destinatario}]: {mensagem}"`.
+  * `NotificadorSMS`: imprime `f"[SMS para {destinatario}]: {mensagem}"`.
+
+---
+
+#### 6\. `servicos/pedido_service.py`
+
+Neste módulo de Regra de Negócio (SRP), teremos **Injeção de Dependência, Composição e Mixin**:
+
+* **Classe** **PedidoService(NotificavelMixin)**:
+  * **Injeção de Dependência**: no `__init__`, recebe por parâmetro o `notificador` (Duck Typing) e o `cliente_email: str`.
+  * **Composição**: no `__init__`, cria internamente o seu próprio atributo `self.historico_status: list[str] = []` e adiciona `"Pedido Criado"`.
+  * Atributo de lista: `self.itens: list[ItemPedido] = []`.
+  * Método `adicionar_item(self, produto: Produto, quantidade: int) -&gt; None`:
+    * Se `quantidade &lt;= 0`, lança `EstoqueInsuficienteError("Quantidade inválida para item.")`.
+    * Instancia o `ItemPedido` e o adiciona à lista de itens.
+  * Método `calcular_total(self) -&gt; float`:
+    * Retorna a soma do subtotal de todos os itens.
+  * Método `finalizar_pedido(self, cupom: str = None) -&gt; float`:
+    * Se `cupom == "INVALIDO"`, lança `CupomInvalidoError("Cupom de desconto expirado ou inexistente.")`.
+    * Se `cupom == "PROMO10"`, aplica 10% de desconto sobre o total final.
+    * Envia a notificação do cliente chamando `self.notificador.enviar(self.cliente_email, ...)` (Duck Typing).
+    * Usa o método `self.notificar(...)` herdado do `NotificavelMixin`.
+    * Atualiza o histórico de status interno registrando `"Pedido Finalizado"`.
+    * Retorna o valor total a ser pago.
+
+---
+
+#### 7\. `main.py`
+
+Ponto de entrada da aplicação:
+
+* **Imports Limpos**: importações relativas/absolutas dos pacotes (`from modelos.produto import ...`, `from servicos.pedido_service import ...`, etc.).
+* **Execução Completa**:
+  1. Instanciação de produtos via construtor tradicional e via `@classmethod de_string()`.
+  2. Teste de Dunders (`print`, `repr`, comparação `==` e ordenação de produtos por data de validade usando `sorted()`).
+  3. Instanciação do serviço de pedido injetando o notificador de e-mail/SMS.
+  4. Adição de itens e finalização do pedido.
+  5. Captura de exceções com blocos `try/except` simulando falha por cupom inválido, preço negativo no setter e quantidade inválida.
+  6. Exibição do histórico do pedido.
