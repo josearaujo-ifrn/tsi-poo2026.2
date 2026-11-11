@@ -1,6 +1,7 @@
 from modelos.produto import *
 from dataclasses import dataclass
 
+@dataclass
 class ItemPedido:
     produto: Produto
     quantidade: int

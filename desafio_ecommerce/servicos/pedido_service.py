@@ -23,11 +23,11 @@ class PedidoService(NotificavelMixin):
 
     def finalizar_pedido(self, cupom: str = None) -> float:
         total = self.calcular_total()
-        if cupom.upper() == "PROMO10":
+        if cupom is not None and cupom.upper() == "PROMO10":
             total = total * 0.9
         elif cupom.upper() == "INVALIDO":
             raise CupomInvalidoError("Cupom de desconto expirado ou inexistente.")
-        self.notificador.enviar(self.cliente_email, ...)
-        self.notificar(...)
+        self.notificador.enviar(self.cliente_email, f"Pedido finalizado com total R${total}.")
+        self.notificar(f"Pedido finalizado com total R${total}.")
         self.historico_status.append("Pedido finalizado.")
         return total

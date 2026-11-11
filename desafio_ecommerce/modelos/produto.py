@@ -13,20 +13,22 @@ class Produto(ABC):
         return self._preco
 
     @preco.setter
-    def preco(self, preco) -> None:
+    def preco(self, preco: float) -> None:
         if preco <= 0:
             raise ValueError("O preço deve ser maior que zero.")
+        else:
+            self._preco = preco
 
     @classmethod
     def de_string(cls, texto: str) -> Produto:
         Tipo, Nome, Codigo, Preco, DataValidade, Extras = texto.split(";")
         Validade = date.fromisoformat(DataValidade)
         if Tipo.upper() == "FISICO":
-            return ProdutoFisico(Nome, Codigo, Preco, Validade)
+            return ProdutoFisico(Nome, Codigo, Preco, Validade, Extras)
         elif Tipo.upper() == "DIGITAL":
-            return ProdutoDigital(Nome, Codigo, Preco, Validade)
+            return ProdutoDigital(Nome, Codigo, Preco, Validade, Extras)
         else:
-            return ValueError(f"O tipo {Tipo} é inválido.")
+            raise ValueError(f"O tipo {Tipo} é inválido.")
 
     @staticmethod
     def calcular_imposto_padrao(valor: float) -> float:
@@ -40,8 +42,10 @@ class Produto(ABC):
         return f"Produto(nome={self._nome}), Preço(preco={self._preco})"
 
     def __eq__(self, outro: Produto) -> bool:
-        if isinstance(Produto, outro):
+        if isinstance(outro, Produto):
             return self._codigo == outro._codigo
+        else:
+            return False
 
     def __lt__(self, outro: Produto) -> bool:
         return self._validade < outro._validade
