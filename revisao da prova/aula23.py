@@ -100,7 +100,7 @@ except TypeError as erro:
 # item 9
 
 class Prato:
-    def __init__(self, nome: str, preco: int) -> None:
+    def __init__(self, nome: str, preco: float) -> None:
         self.nome = nome
         self.preco = preco
 
@@ -110,31 +110,16 @@ class Cardapio:
 
     def adicionar_prato(self, prato: Prato) -> None:
         self.lista_pratos.append(prato)
-        print(f"Prato {prato.nome} com valor R${prato.preco} adicionado!")
+        print(f"Prato {prato.nome} com valor R${prato.preco:.2f} adicionado!")
+
+    def ver_cardapio(self):
+        for pratos in self.lista_pratos:
+            print(pratos)
 
 class Restaurante:
     def __init__(self, cardapio: Cardapio) -> None:
         self.cardapio = cardapio
 
-
-# class Prato:
-#     def __init__(self, nome: str, preco: int):
-#         self.nome = nome
-#         self.preco = preco
-#         # falta coisa
-    
-# class Cardapio:
-#     def __init__(self):
-#         pass
-
-#     def listar_pratos(self, pratos: Prato):
-#         self.lista_pratos += [pratos]
-#         # falta coisa
-
-# class Restaurante:
-#     def __init__(self, nome: str):
-#         self.nome = nome
-
-#     def ver_cardapio(self, cardapio: Cardapio):
-#         for pratos in cardapio: # falta coisa
-#             print(pratos)
+p = Prato("Bolo", 10.50)
+c = Cardapio()
+c.adicionar_prato(p)
