@@ -73,41 +73,68 @@ class Caminhao(Veiculo):
 
 
 # item 7
-# falta corrigir
-# class Locadora:
-#     def __init__(self, nome: str) -> None:
-#         self.nome = nome
+class Locadora:
+    def __init__(self, nome: str) -> None:
+        self.nome = nome
+        self.lista_veiculos: list[Veiculo] = []
 
-#     def cadastrar_veiculo(self, veiculo: Veiculo) -> str:
-#         print(f"O veículo {veiculo} foi cadastrado.")
+    def cadastrar_veiculo(self, veiculo: Veiculo) -> None:
+        self.lista_veiculos.append(veiculo)
+        print(f"O veículo com placa {veiculo.placa} foi cadastrado.")
 
-#     def faturamento_previsto(self, dias: int) -> int:
-#         return Veiculo.calcular_aluguel(dias)
+    def faturamento_previsto(self, dias: int) -> float:
+        print(f"Faturamento previsto da locadora {self.nome}:")
+        return sum(veiculos.calcular_aluguel(dias) for veiculos in self.lista_veiculos)
 
-# l = Locadora("loc1")
-# l.cadastrar_veiculo(Carro("ABC1234", 10))
-# l.faturamento_previsto(10)
+l = Locadora("loc1")
+l.cadastrar_veiculo(Carro("ABC1234", 10))
+print(l.faturamento_previsto(10))
+
+
+# item 8
+try:
+    v = Veiculo("1A", 10)
+except TypeError as erro:
+    print(f"[ERRO] TypeError: {erro}")
 
 # item 9
 
 class Prato:
-    def __init__(self, nome: str, preco: int):
+    def __init__(self, nome: str, preco: int) -> None:
         self.nome = nome
         self.preco = preco
-        # falta coisa
-    
-class Cardapio:
-    def __init__(self):
-        pass
 
-    def listar_pratos(self, pratos: Prato):
-        self.lista_pratos += [pratos]
-        # falta coisa
+class Cardapio:
+    def __init__(self) -> None:
+        self.lista_pratos: list[Prato] = []
+
+    def adicionar_prato(self, prato: Prato) -> None:
+        self.lista_pratos.append(prato)
+        print(f"Prato {prato.nome} com valor R${prato.preco} adicionado!")
 
 class Restaurante:
-    def __init__(self, nome: str):
-        self.nome = nome
+    def __init__(self, cardapio: Cardapio) -> None:
+        self.cardapio = cardapio
 
-    def ver_cardapio(self, cardapio: Cardapio):
-        for pratos in cardapio: # falta coisa
-            print(pratos)
+
+# class Prato:
+#     def __init__(self, nome: str, preco: int):
+#         self.nome = nome
+#         self.preco = preco
+#         # falta coisa
+    
+# class Cardapio:
+#     def __init__(self):
+#         pass
+
+#     def listar_pratos(self, pratos: Prato):
+#         self.lista_pratos += [pratos]
+#         # falta coisa
+
+# class Restaurante:
+#     def __init__(self, nome: str):
+#         self.nome = nome
+
+#     def ver_cardapio(self, cardapio: Cardapio):
+#         for pratos in cardapio: # falta coisa
+#             print(pratos)
