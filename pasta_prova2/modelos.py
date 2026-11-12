@@ -64,7 +64,7 @@ class Vacinacao(Atendimento):
 class Agenda: # peguei a agenda do commit antigo e mudei o type hint do property 1
     def __init__(self, limite_minutos: int = 240) -> None:
         self.limite_minutos = limite_minutos
-        self._lista_atendimentos: list[Atendimento] = []
+        self._lista_atendimentos: list[Consulta | Exame | Vacinacao] = []
 
     @property
     def lista_atendimentos(self) -> tuple: 
@@ -74,5 +74,5 @@ class Agenda: # peguei a agenda do commit antigo e mudei o type hint do property
     def minutos_ocupados(self) -> int:
         pass
 
-    def agendar(self, atendimento: Atendimento) -> None:
-        pass # ainda falta fazer
+    def agendar(self, antedimento: Consulta | Exame | Vacinacao ) -> None:
+       pass
