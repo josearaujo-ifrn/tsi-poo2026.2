@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from abc import ABC, abstractmethod
+from excecoes import AgendaError, PacienteJaAgendadoError, HorarioIndisponivelError
 
 @dataclass(frozen=True)
 class Paciente:
@@ -8,14 +9,14 @@ class Paciente:
 
 class Atendimento(ABC):
     def __init__(self, paciente: Paciente) -> None:
-        self.paciente = paciente
+        self._paciente = paciente
 
     @abstractmethod
     def duracao_minutos(self) -> int:
         """As subclasses irão implementar o método"""
 
-    def __str__(self):
-        return f"Tipo de Atendimento: {self.tipo}\nNome do Paciente:{self.paciente.nome}\nDuração:{self.duracao_minutos()}"
+    def __str__(self) -> str: # coloquei tipo_subclasse pra cada subclasse falar o tipo de atendimento
+        return f"Tipo de Atendimento: 'tipo_subclasse'\nNome do Paciente:{self._paciente.nome}\nDuração:{self.duracao_minutos()}"
 
 class Consulta(Atendimento):
     def __init__(self, paciente: Paciente, especialidade: str, retorno: bool = False) -> None:
@@ -29,8 +30,8 @@ class Consulta(Atendimento):
         else:
             return 30
 
-    def __str__(self):
-        return f"Tipo de Atendimento: Consulta\nNome do Paciente:{self.paciente.nome}\nDuração:{self.duracao_minutos()}"
+    def __str__(self) -> str:
+        return f"Tipo de Atendimento: Consulta\nNome do Paciente:{self._paciente.nome}\nDuração:{self.duracao_minutos()}"
 
 class Exame(Atendimento):
     def __init__(self, paciente: Paciente, tipo: str, jejum: bool = False) -> None:
@@ -44,8 +45,8 @@ class Exame(Atendimento):
         else:
             return 20
 
-    def __str__(self):
-        return f"Tipo de Atendimento: Exame\nNome do Paciente:{self.paciente.nome}\nDuração:{self.duracao_minutos()}"
+    def __str__(self) -> str:
+        return f"Tipo de Atendimento: Exame\nNome do Paciente:{self._paciente.nome}\nDuração:{self.duracao_minutos()}"
 
 class Vacinacao(Atendimento):
     def __init__(self, paciente: Paciente, vacina: str, doses: int = 1) -> None:
@@ -56,24 +57,22 @@ class Vacinacao(Atendimento):
     def duracao_minutos(self) -> int:
         return 10
 
-    def __str__(self):
-        return f"Tipo de Atendimento: Vacinacao\nNome do Paciente:{self.paciente.nome}\nDuração:{self.duracao_minutos()}"
+    def __str__(self) -> str:
+        return f"Tipo de Atendimento: Vacinacao\nNome do Paciente:{self._paciente.nome}\nDuração:{self.duracao_minutos()}"
 
-class Agenda:
+
+class Agenda: # peguei a agenda do commit antigo e mudei o type hint do property 1
     def __init__(self, limite_minutos: int = 240) -> None:
         self.limite_minutos = limite_minutos
-        self._lista_atendimentos: any = []
+        self._lista_atendimentos: list[Atendimento] = []
 
-    def agendar(self, tipo: str) -> None:
-        print("Digite CONSULTA ou EXAME ou VACINACAO")
-        if tipo.upper() == "CONSULTA":
-            consulta = Consulta()
-            self._lista_atendimentos.append(consulta)
-        elif tipo.upper() == "EXAME":
-            exame = Exame()
-            self._lista_atendimentos.append(exame)
-        elif tipo.upper() == "VACINACAO":
-            vacinacao = Vacinacao()
-            self._lista_atendimentos.append(vacinacao)
-        else:
-            raise ValueError("Digite o tipo correto.")
+    @property
+    def lista_atendimentos(self) -> tuple: 
+        return tuple(self._lista_atendimentos)
+
+    @property
+    def minutos_ocupados(self) -> int:
+        pass
+
+    def agendar(self, atendimento: Atendimento) -> None:
+        pass # ainda falta fazer
