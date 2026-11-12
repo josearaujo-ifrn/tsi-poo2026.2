@@ -34,7 +34,7 @@ class Consulta(Atendimento):
 
 class Exame(Atendimento):
     def __init__(self, paciente: Paciente, tipo: str, jejum: bool = False) -> None:
-        super().__init__(paciente, tipo)
+        super().__init__(paciente)
         self.tipo = tipo
         self.jejum = jejum
         

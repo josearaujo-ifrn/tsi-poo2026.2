@@ -61,7 +61,7 @@ verificar("subclasse sem duracao_minutos também não instancia",
 duracoes = [
     (Consulta(ana, "Clínica Geral"), 30),
     (Consulta(ana, "Clínica Geral", retorno=True), 15),
-    (Exame(ana, "Glicemia"), 20),
+    (Exame(ana, "Glicemia", 20)),
     (Exame(ana, "Glicemia", jejum=True), 30),
     (Vacinacao(ana, "Influenza"), 10),
     (Vacinacao(ana, "Influenza", doses=1), 10),
