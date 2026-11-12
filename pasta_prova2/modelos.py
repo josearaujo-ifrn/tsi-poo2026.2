@@ -61,7 +61,7 @@ class Vacinacao(Atendimento):
         return f"Tipo de Atendimento: Vacinacao\nNome do Paciente:{self._paciente.nome}\nDuração:{self.duracao_minutos()}"
 
 
-class Agenda: # peguei a agenda do commit antigo e mudei o type hint do property 1
+class Agenda:
     def __init__(self, limite_minutos: int = 240) -> None:
         self.limite_minutos = limite_minutos
         self._lista_atendimentos: list[Consulta | Exame | Vacinacao] = []
@@ -72,7 +72,10 @@ class Agenda: # peguei a agenda do commit antigo e mudei o type hint do property
 
     @property
     def minutos_ocupados(self) -> int:
-        pass
+        soma_minutos_ocupados = 0
+        for atendimento_agendado in self._lista_atendimentos:
+            soma_minutos_ocupados += atendimento_agendado.duracao_minutos()
+            return soma_minutos_ocupados
 
     def agendar(self, atendimento: Consulta | Exame | Vacinacao, total: int = 0, MesmoNome: bool = False) -> None:
         total = 0
