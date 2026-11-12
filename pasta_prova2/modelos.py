@@ -79,11 +79,13 @@ class Agenda: # peguei a agenda do commit antigo e mudei o type hint do property
         MesmoNome = False
         
         for item in self._lista_atendimentos:
-            total = item.duracao_minutos()
+            total += item.duracao_minutos()
+            if total <= self.limite_minutos:
+                raise HorarioIndisponivelError
         for item in self._lista_atendimentos:
             if atendimento._paciente == item._paciente:
                 MesmoNome = True
-                break
+                raise PacienteJaAgendadoError
         if total <= self.limite_minutos and MesmoNome == False:
             self._lista_atendimentos = [atendimento]
         else:
