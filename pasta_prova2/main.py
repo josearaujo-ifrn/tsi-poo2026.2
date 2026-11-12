@@ -61,12 +61,12 @@ verificar("subclasse sem duracao_minutos também não instancia",
 duracoes = [
     (Consulta(ana, "Clínica Geral"), 30),
     (Consulta(ana, "Clínica Geral", retorno=True), 15),
-    (Exame(ana, "Glicemia"),20),
+    (Exame(ana, "Glicemia"), 20),
     (Exame(ana, "Glicemia", jejum=True), 30),
     (Vacinacao(ana, "Influenza"), 10),
     (Vacinacao(ana, "Influenza", doses=1), 10),
-    (Vacinacao(ana, "Influenza", doses=2), 10),
-    (Vacinacao(ana, "Influenza", doses=5), 10),
+    (Vacinacao(ana, "Influenza", doses=2), 20),
+    (Vacinacao(ana, "Influenza", doses=5), 50),
 ]
 for obj, esperado in duracoes:
     verificar(f"{type(obj).__name__} => {esperado} min", obj.duracao_minutos() == esperado)
