@@ -90,6 +90,6 @@ class Agenda:
                 MesmoNome = True
                 raise PacienteJaAgendadoError
         if total <= self.limite_minutos and MesmoNome == False:
-            self._lista_atendimentos = [atendimento]
+            self._lista_atendimentos += [atendimento]
         else:
             raise AgendaError
