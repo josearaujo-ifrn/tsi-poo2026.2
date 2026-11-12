@@ -74,5 +74,11 @@ class Agenda: # peguei a agenda do commit antigo e mudei o type hint do property
     def minutos_ocupados(self) -> int:
         pass
 
-    def agendar(self, antedimento: Consulta | Exame | Vacinacao ) -> None:
-       pass
+    def agendar(self, atendimento: Consulta | Exame | Vacinacao, total: int = 0 ) -> None:
+        total = 0
+        for item in self._lista_atendimentos:
+            total = item.duracao_minutos()
+        if total <= self.limite_minutos:
+            self._lista_atendimentos = [atendimento]
+        else:
+            raise HorarioIndisponivelError
