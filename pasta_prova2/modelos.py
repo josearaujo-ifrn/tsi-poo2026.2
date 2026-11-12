@@ -23,8 +23,8 @@ class Consulta(Atendimento):
         self.especialidade = especialidade
         self.retorno = retorno
     
-    def duracao_minutos(self, retorno: bool) -> int:
-        if retorno == True:
+    def duracao_minutos(self) -> int:
+        if self.retorno == True:
             return 15
         else:
             return 30
@@ -38,8 +38,8 @@ class Exame(Atendimento):
         self.tipo = tipo
         self.jejum = jejum
         
-    def duracao_minutos(self, jejum: bool) -> int:
-        if jejum == True:
+    def duracao_minutos(self) -> int:
+        if self.jejum == True:
             return 30
         else:
             return 20
